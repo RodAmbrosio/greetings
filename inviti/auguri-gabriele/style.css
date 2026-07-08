@@ -1,0 +1,533 @@
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: "Comic Sans MS", "Baloo 2", Arial, sans-serif;
+    overflow: hidden;
+    user-select: none;
+}
+
+.ocean {
+    height: 100dvh;
+    background: linear-gradient(180deg, #6fe0ff 0%, #38c8ff 35%, #0077d6 70%, #004d99 100%);
+    color: white;
+    position: relative;
+}
+
+/* ---------- screens ---------- */
+
+.screen {
+    display: none;
+    height: 100dvh;
+    padding: 24px 20px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    overflow-y: auto;
+}
+
+.screen.active {
+    display: flex;
+    animation: screenIn .5s ease both;
+}
+
+@keyframes screenIn {
+    from {
+        opacity: 0;
+        transform: scale(.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+h1 {
+    font-size: clamp(28px, 7vw, 40px);
+    text-shadow: 2px 3px #004d80;
+    margin: 8px 0;
+}
+
+h2 {
+    font-size: clamp(20px, 5vw, 26px);
+    text-shadow: 1px 2px #004d80;
+    margin: 6px 0;
+}
+
+p {
+    font-size: clamp(17px, 4.2vw, 22px);
+    line-height: 1.55;
+    max-width: 480px;
+}
+
+button {
+    background: #ffd93d;
+    border: none;
+    padding: 18px 32px;
+    border-radius: 50px;
+    font-size: clamp(18px, 4.5vw, 22px);
+    font-weight: bold;
+    margin-top: 22px;
+    color: #004d80;
+    box-shadow: 0 5px 0 #cc9900;
+    touch-action: manipulation;
+    cursor: pointer;
+    transition: filter .2s;
+}
+
+button:hover {
+    filter: brightness(1.05);
+}
+
+button:active {
+    transform: translateY(5px);
+    box-shadow: 0 1px 0 #cc9900;
+}
+
+button.ghost {
+    background: rgba(255, 255, 255, .18);
+    color: #ffffff;
+    box-shadow: 0 5px 0 rgba(0, 0, 0, .2);
+    font-size: clamp(15px, 3.6vw, 18px);
+    padding: 12px 22px;
+}
+
+/* small corner button to open the share/QR screen */
+.share-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(255, 255, 255, .22);
+    color: #fff;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    font-size: 24px;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, .2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .shark {
+    font-size: clamp(70px, 22vw, 110px);
+    animation: swim 3s infinite ease-in-out, bob 2.4s infinite ease-in-out;
+    filter: drop-shadow(0 10px 12px rgba(0,0,0,.25));
+} */
+
+.shark img {
+
+    width: 180px;
+
+    max-width: 45vw;
+
+    filter:
+        drop-shadow(0 10px 12px rgba(0, 0, 0, .25));
+
+    animation:
+        swim 3s infinite ease-in-out,
+        bob 2.4s infinite ease-in-out;
+
+}
+
+@keyframes swim {
+    0% {
+        transform: translateX(-30px) rotate(-4deg);
+    }
+
+    50% {
+        transform: translateX(30px) rotate(4deg);
+    }
+
+    100% {
+        transform: translateX(-30px) rotate(-4deg);
+    }
+}
+
+@keyframes bob {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+/* ---------- bubbles ---------- */
+
+.bubbles span {
+    position: absolute;
+    bottom: -60px;
+    font-size: 30px;
+    opacity: .8;
+    animation: bubbleUp linear infinite;
+    pointer-events: none;
+}
+
+@keyframes bubbleUp {
+    0% {
+        transform: translateY(0) translateX(0) scale(.8);
+        opacity: .9;
+    }
+
+    100% {
+        transform: translateY(-115vh) translateX(var(--drift, 20px)) scale(1.1);
+        opacity: 0;
+    }
+}
+
+/* ---------- fishing game ---------- */
+
+#fishArea {
+    height: 320px;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+}
+
+.fish {
+    width: 92px;
+    height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    cursor: pointer;
+    animation: fishmove 4s infinite ease-in-out;
+    transition: transform .25s;
+    touch-action: manipulation;
+}
+
+.fish img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .3));
+    pointer-events: none;
+}
+
+/* color variants simulated from the single yellow artwork via filters.
+   Replace with real per-color PNGs later and these filters become unnecessary. */
+.color-yellow {
+    filter: none;
+}
+
+.color-orange {
+    filter: hue-rotate(-25deg) saturate(1.35) brightness(1.02);
+}
+
+.color-pink {
+    filter: hue-rotate(230deg) saturate(1.6) brightness(1.08);
+}
+
+.color-green {
+    filter: hue-rotate(70deg) saturate(1.25);
+}
+
+.color-purple {
+    filter: hue-rotate(200deg) saturate(1.4) brightness(.98);
+}
+
+.fish:active img {
+    transform: scale(1.25) rotate(15deg);
+}
+
+.fish.caught {
+    animation: caughtPop .25s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes caughtPop {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.35) rotate(10deg);
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 30px;
+    pointer-events: none;
+    animation: sparkleOut .6s ease forwards;
+}
+
+@keyframes sparkleOut {
+    0% {
+        transform: translateY(0) scale(.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-40px) scale(1.4);
+        opacity: 0;
+    }
+}
+
+.fish:nth-child(1) {
+    left: 8%;
+    top: 15%;
+    animation-delay: 0s;
+}
+
+.fish:nth-child(2) {
+    left: 68%;
+    top: 8%;
+    animation-delay: .4s;
+}
+
+.fish:nth-child(3) {
+    left: 38%;
+    top: 58%;
+    animation-delay: .8s;
+}
+
+.fish:nth-child(4) {
+    left: 14%;
+    top: 68%;
+    animation-delay: 1.2s;
+}
+
+.fish:nth-child(5) {
+    left: 72%;
+    top: 66%;
+    animation-delay: 1.6s;
+}
+
+@keyframes fishmove {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(18px, -26px) rotate(6deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+#counter {
+    background: rgba(255, 255, 255, .18);
+    padding: 8px 20px;
+    border-radius: 30px;
+    display: inline-block;
+}
+
+/* ---------- cake / candles ---------- */
+
+.cake {
+    font-size: clamp(90px, 26vw, 130px);
+    animation: cakeBounce 2.2s infinite ease-in-out;
+}
+
+@keyframes cakeBounce {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(-2deg);
+    }
+}
+
+.candle-wrap {
+    position: relative;
+    margin-top: 4px;
+}
+
+.candles {
+    font-size: clamp(50px, 15vw, 70px);
+    cursor: pointer;
+    touch-action: manipulation;
+    display: inline-block;
+    animation: flicker 1.4s infinite ease-in-out, wiggle 1.8s infinite ease-in-out;
+}
+
+@keyframes flicker {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.3);
+    }
+}
+
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: rotate(-3deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(3deg) scale(1.04);
+    }
+}
+
+.blow-hint {
+    margin-top: 10px;
+    font-size: clamp(15px, 3.8vw, 19px);
+    opacity: .95;
+    animation: hintPulse 1.6s infinite ease-in-out;
+}
+
+@keyframes hintPulse {
+
+    0%,
+    100% {
+        opacity: .7;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+.mic-btn {
+    background: #55d66b;
+    box-shadow: 0 5px 0 #2f9e46;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mic-btn.listening {
+    background: #ff6fae;
+    box-shadow: 0 5px 0 #cc4a82;
+    animation: micPulse 1s infinite;
+}
+
+@keyframes micPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+}
+
+.mic-level {
+    width: 140px;
+    height: 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .25);
+    margin: 14px auto 0;
+    overflow: hidden;
+    display: none;
+}
+
+.mic-level.show {
+    display: block;
+}
+
+.mic-level-fill {
+    height: 100%;
+    width: 0%;
+    background: #ffd93d;
+    transition: width .08s linear;
+}
+
+/* ---------- final screen ---------- */
+
+@keyframes pop {
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* ---------- share / qr screen ---------- */
+
+#qrcode {
+    background: #fff;
+    padding: 16px;
+    border-radius: 18px;
+    display: inline-block;
+    margin-top: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .3);
+}
+
+.link-box {
+    background: rgba(255, 255, 255, .18);
+    border-radius: 14px;
+    padding: 10px 14px;
+    font-size: 14px;
+    max-width: 90vw;
+    word-break: break-all;
+    margin-top: 14px;
+}
+
+/* ---------- audio status dot (debug helper, unobtrusive) ---------- */
+
+.audio-status {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    font-size: 22px;
+    opacity: .85;
+}
+
+.music-toggle {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    width: 60px;
+
+    height: 60px;
+
+    border-radius: 50%;
+
+    font-size: 28px;
+
+    padding: 0;
+
+    background: white;
+
+    color: #0066cc;
+
+}

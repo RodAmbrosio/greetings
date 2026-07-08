@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Auguri Gabriele 🦈</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <audio id="music" loop preload="auto">
+        <source src="audio/ocean-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="ocean">
+
+        <div class="bubbles"></div>
+        <section id="start" class="screen active">
+            <div class="shark">
+                <img src="images/fish-yellow.png" alt="Gabriele shark">
+            </div>
+            <h1>Ciao Gabriele! 🌊</h1>
+            <p>Una sorpresa arriva dal fondo del mare...</p>
+            <button onclick="startAdventure()">🫧 Apri la sorpresa</button>
+        </section>
+
+        <section id="message" class="screen">
+            <h1>🎂 Buon Compleanno</h1>
+            <h2>Gabriele compie 2 anni!</h2>
+            <p>
+                Ciao piccolo Gabriele ❤️
+                <br><br>
+                Ti auguriamo un mare pieno di felicità,
+                avventure e momenti speciali.
+                <br><br>
+                Ti vogliamo tanto bene!
+            </p>
+            <button onclick="playGame()">🐠 Giochiamo!</button>
+        </section>
+
+        <section id="game" class="screen">
+            <h1>🐠 Pesca i pesciolini!</h1>
+            <p>Tocca tutti i pesci!</p>
+            <div id="fishArea"></div>
+            <h2 id="counter">Pesci trovati: 0/5</h2>
+        </section>
+
+        <section id="cake" class="screen">
+            <h1>🎂 Una torta per te!</h1>
+            <div class="cake">🍰</div>
+            <div class="candle-wrap">
+                <div class="candles" onclick="blowCandles()">🕯️ 🕯️</div>
+            </div>
+            <p class="blow-hint">👆 Tocca le candeline oppure 💨 soffiaci sopra!</p>
+            <button id="micBtn" class="mic-btn" onclick="toggleMic()">🎤 Soffia con il microfono</button>
+            <div class="mic-level" id="micLevelWrap">
+                <div class="mic-level-fill" id="micLevelFill"></div>
+            </div>
+        </section>
+
+        <section id="final" class="screen">
+            <h1>🎉 EVVIVA GABRIELE! 🎉</h1>
+            <div class="shark">
+                <img src="images/fish-yellow.png" alt="squaletto">
+            </div>
+            <p>
+                Che questi 2 anni siano solo
+                l'inizio di un oceano pieno
+                di felicità!
+                <br><br>
+                Un grandissimo abbraccio
+                <br>
+                ❤️ Dagli zii Rodi e Conny
+            </p>
+
+            <button onclick="toggleFinalMusic()" id="musicButton">
+
+                🔊 Disattiva musica
+
+            </button>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
