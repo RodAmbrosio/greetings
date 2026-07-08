@@ -121,24 +121,142 @@ button.ghost {
     justify-content: center;
 }
 
-/* .shark {
-    font-size: clamp(70px, 22vw, 110px);
-    animation: swim 3s infinite ease-in-out, bob 2.4s infinite ease-in-out;
-    filter: drop-shadow(0 10px 12px rgba(0,0,0,.25));
-} */
+/* ================= SHARK BUBBLE ================= */
 
-.shark img {
+.shark-bubble {
 
-    width: 180px;
+    width: 220px;
+    height: 220px;
 
-    max-width: 45vw;
+    border-radius: 50%;
 
-    filter:
-        drop-shadow(0 10px 12px rgba(0, 0, 0, .25));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 20px auto;
+
+    background:
+        radial-gradient(circle at 35% 25%,
+            rgba(255, 255, 255, .95),
+            rgba(200, 245, 255, .7) 25%,
+            rgba(70, 190, 255, .45) 65%,
+            rgba(0, 100, 200, .35));
+
+    box-shadow:
+
+        inset 0 0 30px rgba(255, 255, 255, .9),
+        0 10px 30px rgba(0, 80, 150, .35);
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+/* riflesso bolla */
+
+.shark-bubble::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 55px;
+    height: 25px;
+
+    background: white;
+
+    opacity: .75;
+
+    border-radius: 50%;
+
+    top: 30px;
+    left: 45px;
+
+    transform: rotate(-25deg);
+
+}
+
+
+/* lo squalo si muove dentro */
+
+.shark {
+
+    width: 150px;
+
+    z-index: 2;
 
     animation:
-        swim 3s infinite ease-in-out,
-        bob 2.4s infinite ease-in-out;
+
+        sharkInside 3s infinite ease-in-out;
+
+    filter:
+        drop-shadow(0 8px 10px rgba(0, 0, 0, .35));
+
+}
+
+
+@keyframes sharkInside {
+
+
+    0%,
+    100% {
+
+        transform:
+            translateX(-8px) rotate(-5deg);
+
+    }
+
+
+    50% {
+
+        transform:
+            translateX(8px) rotate(5deg);
+
+    }
+
+}
+
+.fish-bubble {
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+
+        radial-gradient(circle at 35% 25%,
+            rgba(255, 255, 255, .9),
+            rgba(180, 240, 255, .5),
+            rgba(0, 150, 255, .25));
+
+
+    box-shadow:
+
+        inset 0 0 15px white,
+        0 5px 15px rgba(0, 0, 0, .25);
+
+
+}
+
+
+.fish-bubble img {
+
+    width: 70px;
+
+    height: 70px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 5px 5px rgba(0, 0, 0, .3));
 
 }
 

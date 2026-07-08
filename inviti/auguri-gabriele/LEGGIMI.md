@@ -13,7 +13,7 @@
 - Nella schermata finale è presente un pulsante 🔊/🔇 per attivare o disattivare la musica.
 
 ### 🐠 Gioco dei pesciolini
-- I pesciolini utilizzano la stessa immagine (`images/fish-yellow.png`) colorata tramite filtri CSS.
+- I pesciolini utilizzano la stessa immagine (`images/shark.png`) colorata tramite filtri CSS.
 - Ogni pesciolino scompare immediatamente quando viene toccato.
 - Rimangono gli effetti sonori e le stelline quando viene catturato.
 - Al termine del gioco viene mostrata la schermata della torta.
@@ -83,7 +83,7 @@ che viene utilizzata nelle schermate iniziale e finale.
 Per ora tutti i pesci utilizzano
 
 ```
-images/fish-yellow.png
+images/shark.png
 ```
 
 con colori ottenuti tramite CSS.

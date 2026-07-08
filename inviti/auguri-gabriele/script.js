@@ -46,6 +46,7 @@ function startAdventure() {
    volume/mute issue rather than a missing mp3 file. */
 
 let sfxCtx = null;
+
 function getSfxCtx() {
     if (!sfxCtx) {
         const AC = window.AudioContext || window.webkitAudioContext;
@@ -92,15 +93,29 @@ function playBlowChime() {
 let found = 0;
 let fishTarget = 0;
 
-// Single artwork (images/fish-yellow.png) recoloured with CSS filters so every
+// Single artwork (images/shark.png) recoloured with CSS filters so every
 // fish looks different. Drop real per-colour PNGs into /images later and swap
 // the "img" values below (then you can delete the matching .color-* filter).
-const FISH_CONFIG = [
-    { color: "orange", img: "images/fish-yellow.png" },
-    { color: "yellow", img: "images/fish-yellow.png" },
-    { color: "pink", img: "images/fish-yellow.png" },
-    { color: "green", img: "images/fish-yellow.png" },
-    { color: "purple", img: "images/fish-yellow.png" }
+const FISH_CONFIG = [{
+    color: "orange",
+    img: "images/shark.png"
+},
+{
+    color: "yellow",
+    img: "images/shark.png"
+},
+{
+    color: "pink",
+    img: "images/shark.png"
+},
+{
+    color: "green",
+    img: "images/shark.png"
+},
+{
+    color: "purple",
+    img: "images/shark.png"
+}
 ];
 
 function playGame() {
@@ -114,7 +129,17 @@ function playGame() {
     FISH_CONFIG.forEach(cfg => {
         const fishEl = document.createElement("div");
         fishEl.className = "fish";
-        fishEl.innerHTML = `<img src="${cfg.img}" class="color-${cfg.color}" alt="pesciolino ${cfg.color}">`;
+        fishEl.innerHTML =
+            `
+<div class="fish-bubble">
+
+<img 
+src="${cfg.img}" 
+class="color-${cfg.color}"
+alt="pesce">
+
+</div>
+`;
 
         fishEl.onclick = function (e) {
             if (this.dataset.clicked) return;
@@ -128,7 +153,9 @@ function playGame() {
             // Rimuove il pesce appena finisce l'animazione
             this.addEventListener("animationend", () => {
                 this.remove();
-            }, { once: true });
+            }, {
+                once: true
+            });
 
             found++;
 
@@ -209,9 +236,7 @@ function toggleFinalMusic() {
         btn.innerHTML =
             "🔊 Disattiva musica";
 
-    }
-
-    else {
+    } else {
 
         music.pause();
 
@@ -221,6 +246,7 @@ function toggleFinalMusic() {
     }
 
 }
+
 function toggleFinalMusic() {
 
     if (music.paused) {
@@ -254,7 +280,9 @@ async function toggleMic() {
     }
 
     try {
-        micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        micStream = await navigator.mediaDevices.getUserMedia({
+            audio: true
+        });
         const ctx = getSfxCtx();
         const source = ctx.createMediaStreamSource(micStream);
         micAnalyser = ctx.createAnalyser();
@@ -269,8 +297,8 @@ async function toggleMic() {
         const levelFill = document.getElementById("micLevelFill");
 
         let sustainedFrames = 0;
-        const THRESHOLD = 42;       // volume level considered "a blow"
-        const FRAMES_NEEDED = 5;    // must sustain for a few frames to avoid false positives
+        const THRESHOLD = 42; // volume level considered "a blow"
+        const FRAMES_NEEDED = 5; // must sustain for a few frames to avoid false positives
 
         function loop() {
             micAnalyser.getByteFrequencyData(data);
