@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buon Compleanno Conny</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Jost", sans-serif;
+            background: radial-gradient(ellipse at 50% -10%, #3a2b47, #2b1f35 60%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .card {
+            width: 380px;
+            background: linear-gradient(180deg, #f6ecdd, #efe1c9);
+            border-radius: 22px;
+            padding: 40px 32px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, .5);
+            position: relative;
+            overflow: hidden;
+            color: #3a2b2a;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -80px;
+            left: -80px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(217, 140, 134, .25);
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            right: -70px;
+            bottom: -70px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(232, 184, 75, .25);
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            letter-spacing: .35em;
+            text-transform: uppercase;
+            font-size: 11px;
+            color: #a94438;
+            font-weight: 500;
+        }
+
+        .bloom {
+            width: 100px;
+            margin: 18px auto 10px;
+        }
+
+        h1 {
+            font-family: "Cormorant Garamond", serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 30px;
+            color: #3a2b2a;
+            margin-top: 4px;
+        }
+
+        h2 {
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 600;
+            font-size: 44px;
+            color: #a94438;
+            margin-top: 2px;
+        }
+
+        .years {
+            margin-top: 10px;
+            font-size: 15px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #8a6a2a;
+            font-weight: 500;
+        }
+
+        .message {
+            margin-top: 22px;
+            font-size: 15.5px;
+            line-height: 1.7;
+            color: #4a3a38;
+            font-weight: 300;
+        }
+
+        .arrow {
+            font-size: 26px;
+            margin-top: 18px;
+            color: #a94438;
+        }
+
+        .scan {
+            margin-top: 10px;
+            font-size: 13px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: #3a2b2a;
+        }
+
+        #qrcode {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer {
+            margin-top: 26px;
+            font-family: "Cormorant Garamond", serif;
+            font-style: italic;
+            font-size: 19px;
+            color: #a94438;
+        }
+
+        .small {
+            margin-top: 10px;
+            font-size: 11px;
+            color: #9a8a7a;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .card {
+                box-shadow: none;
+            }
+
+            .small {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="content">
+            <div class="eyebrow">Un invito speciale</div>
+            <div class="bloom">
+                <svg viewBox="0 0 100 100">
+                    <path
+                        d="M50 82 C20 62, 8 40, 22 24 C33 12, 48 18, 50 32 C52 18, 67 12, 78 24 C92 40, 80 62, 50 82 Z"
+                        fill="#d98c86" opacity="0.9" />
+                </svg>
+            </div>
+            <h1>Buon Compleanno</h1>
+            <h2>Conny</h2>
+            <div class="years">🥂 23 anni 🥂</div>
+            <div class="message">
+                Amore mio,<br><br>
+                ho preparato qualcosa per festeggiarti come meriti.
+                Un piccolo segreto ti aspetta.
+            </div>
+            <div class="arrow">↓</div>
+            <div class="scan">Inquadra il QR code</div>
+            <div id="qrcode"></div>
+            <div class="footer">Con tutto il cuore ❤️</div>
+            <div class="small">Scansiona per scoprire la sorpresa</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        // Quando pubblichi su GitHub Pages, aggiorna questo link
+        // con il percorso reale di index.html (es. .../auguri-conny/)
+        const QR_URL = "https://rodambrosio.github.io/greetings/inviti/auguri-conny/";
+
+        new QRCode(document.getElementById("qrcode"), {
+            text: QR_URL,
+            width: 200,
+            height: 200,
+            colorDark: "#a94438",
+            colorLight: "#f6ecdd",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Buon Compleanno Conny 🌙✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="garland" id="garland"></div>
+
+    <!-- SCREEN 1 — apertura -->
+    <section id="start" class="screen active">
+        <div class="bloom">
+            <svg viewBox="0 0 100 100">
+                <path d="M50 82 C20 62, 8 40, 22 24 C33 12, 48 18, 50 32 C52 18, 67 12, 78 24 C92 40, 80 62, 50 82 Z"
+                    fill="none" stroke="#e8b84b" stroke-width="2" />
+                <path d="M50 82 C20 62, 8 40, 22 24 C33 12, 48 18, 50 32 C52 18, 67 12, 78 24 C92 40, 80 62, 50 82 Z"
+                    fill="#d98c86" opacity="0.85" />
+            </svg>
+        </div>
+        <div class="eyebrow">17 Luglio</div>
+        <h1>Buon Compleanno<span class="accent">amore mio</span></h1>
+        <p class="lead">C'è una sorpresa che ti aspetta sotto le stelle.</p>
+        <button onclick="showScreen('message')">Aprila</button>
+    </section>
+
+    <!-- SCREEN 2 — messaggio -->
+    <section id="message" class="screen">
+        <div class="eyebrow">Per te</div>
+        <h1>23 candeline<span class="accent">da spegnere</span></h1>
+        <p>
+            Amore mio,<br><br>
+            ogni anno che passa accanto a te sembra più bello del precedente.
+            Oggi voglio festeggiarti come meriti: con calma, con vino buono,
+            con le luci accese solo per noi due.
+            <br><br>
+            Ho preparato qualcosa. Sei pronta a scoprirlo?
+        </p>
+        <button onclick="showScreen('countdown')">Continua</button>
+    </section>
+
+    <!-- SCREEN 3 — countdown -->
+    <section id="countdown" class="screen">
+        <div class="eyebrow">Manca poco</div>
+        <h1>Il conto alla<span class="accent">rovescia</span></h1>
+        <p>Segna il calendario, alle 19:00 si parte per la sorpresa.</p>
+        <div class="countdown">
+            <div class="unit"><span class="num" id="cd-hours">–</span><span class="label">ore</span></div>
+            <div class="unit"><span class="num" id="cd-mins">–</span><span class="label">minuti</span></div>
+            <div class="unit"><span class="num" id="cd-secs">–</span><span class="label">secondi</span></div>
+        </div>
+        <button onclick="showScreen('reveal')">Scopri dove ti porto</button>
+    </section>
+
+    <!-- SCREEN 4 — envelope -->
+    <section id="reveal" class="screen">
+        <div class="eyebrow">Un piccolo segreto</div>
+        <h1>Apri la<span class="accent">busta</span></h1>
+        <div class="envelope" id="envelope" onclick="openEnvelope(this)">
+            <div class="flap-scene">
+                <div class="flap"></div>
+                <div class="seal">C</div>
+            </div>
+        </div>
+        <div class="hint">Tocca per aprire</div>
+    </section>
+
+    <!-- SCREEN 5 — destinazione -->
+    <section id="destination" class="screen">
+        <div class="eyebrow">La sorpresa</div>
+        <h1>Ti porto a<span class="accent">Tenuta Tirelli</span></h1>
+        <div class="polaroid-stack">
+            <figure class="polaroid">
+                <img src="images/tirelli-1.jpg" alt="Tenuta Tirelli, tavoli con lucine">
+                <figcaption>il nostro picnic, tutto per noi</figcaption>
+            </figure>
+            <figure class="polaroid">
+                <img src="images/tirelli-2.jpg" alt="Picnic a Tenuta Tirelli">
+                <figcaption>sotto le stelle</figcaption>
+            </figure>
+        </div>
+
+        <div class="details">
+            <div class="row">
+                <span class="icon">🗓️</span>
+                <div class="txt"><strong>Venerdì 17 Luglio, ore 20:00</strong><span>Ti vengo a prendere io, pensa solo a
+                        essere bellissima.</span></div>
+            </div>
+            <div class="row">
+                <span class="icon">📍</span>
+                <div class="txt"><strong>Tenuta Tirelli</strong><span>Contrada Marafi, 156 – 82030 Faicchio (BN)<br>
+                        <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x133a42d60393fd89:0x4183683ce0b0f588"
+                            target="_blank" rel="noopener">Apri la mappa →</a></span></div>
+            </div>
+            <div class="row">
+                <span class="icon">🍷</span>
+                <div class="txt"><strong>Picnic romantico</strong><span>Tavolo apparecchiato all'aperto, lucine gialle,
+                        vino e tanto tempo solo nostro.</span></div>
+            </div>
+        </div>
+
+        <p class="sign">Ti amo. Buon compleanno, vita mia. — R.</p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
