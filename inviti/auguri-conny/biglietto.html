@@ -16,21 +16,26 @@
             padding: 0;
         }
 
+        html,
+        body {
+            width: 100%;
+            min-height: 100vh;
+        }
+
         body {
             font-family: "Jost", sans-serif;
-            background: radial-gradient(ellipse at 50% -10%, #3a2b47, #2b1f35 60%);
-            min-height: 100vh;
+            background: radial-gradient(ellipse at 50% -10%, #f7d9d4, #f0c4bc 60%);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 16px;
         }
 
         .card {
             width: 380px;
-            background: linear-gradient(180deg, #f6ecdd, #efe1c9);
+            background: linear-gradient(180deg, #faf3e6, #f3e6cd);
             border-radius: 22px;
-            padding: 40px 32px;
+            padding: 28px 28px;
             text-align: center;
             box-shadow: 0 25px 60px rgba(0, 0, 0, .5);
             position: relative;
@@ -46,7 +51,7 @@
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            background: rgba(217, 140, 134, .25);
+            background: rgba(217, 140, 134, .2);
         }
 
         .card::after {
@@ -57,7 +62,7 @@
             width: 180px;
             height: 180px;
             border-radius: 50%;
-            background: rgba(232, 184, 75, .25);
+            background: rgba(232, 184, 75, .2);
         }
 
         .content {
@@ -68,21 +73,21 @@
         .eyebrow {
             letter-spacing: .35em;
             text-transform: uppercase;
-            font-size: 11px;
+            font-size: 13px;
             color: #a94438;
             font-weight: 500;
         }
 
         .bloom {
-            width: 100px;
-            margin: 18px auto 10px;
+            width: 72px;
+            margin: 8px auto 4px;
         }
 
         h1 {
             font-family: "Cormorant Garamond", serif;
             font-style: italic;
             font-weight: 600;
-            font-size: 30px;
+            font-size: 38px;
             color: #3a2b2a;
             margin-top: 4px;
         }
@@ -90,14 +95,14 @@
         h2 {
             font-family: "Cormorant Garamond", serif;
             font-weight: 600;
-            font-size: 44px;
+            font-size: 56px;
             color: #a94438;
             margin-top: 2px;
         }
 
         .years {
-            margin-top: 10px;
-            font-size: 15px;
+            margin-top: 8px;
+            font-size: 18px;
             letter-spacing: .12em;
             text-transform: uppercase;
             color: #8a6a2a;
@@ -105,22 +110,22 @@
         }
 
         .message {
-            margin-top: 22px;
-            font-size: 15.5px;
+            margin-top: 14px;
+            font-size: 22px;
             line-height: 1.7;
             color: #4a3a38;
-            font-weight: 300;
+            font-weight: 400;
         }
 
         .arrow {
-            font-size: 26px;
-            margin-top: 18px;
+            font-size: 24px;
+            margin-top: 8px;
             color: #a94438;
         }
 
         .scan {
-            margin-top: 10px;
-            font-size: 13px;
+            margin-top: 4px;
+            font-size: 17px;
             letter-spacing: .06em;
             text-transform: uppercase;
             font-weight: 500;
@@ -128,33 +133,43 @@
         }
 
         #qrcode {
-            margin-top: 16px;
+            margin-top: 8px;
             display: flex;
             justify-content: center;
         }
 
         .footer {
-            margin-top: 26px;
+            margin-top: 14px;
             font-family: "Cormorant Garamond", serif;
             font-style: italic;
-            font-size: 19px;
+            font-size: 25px;
             color: #a94438;
         }
 
         .small {
-            margin-top: 10px;
-            font-size: 11px;
+            margin-top: 6px;
+            font-size: 12px;
             color: #9a8a7a;
         }
 
         @media print {
+
+            html,
             body {
-                background: white;
+                background: #ffffff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
                 padding: 0;
             }
 
             .card {
+                background: #ffffff !important;
                 box-shadow: none;
+            }
+
+            .card::before,
+            .card::after {
+                display: none;
             }
 
             .small {
@@ -177,16 +192,16 @@
             </div>
             <h1>Buon Compleanno</h1>
             <h2>Conny</h2>
-            <div class="years">🥂 23 anni 🥂</div>
+            <div class="years">23 anni</div><br>
             <div class="message">
-                Amore mio,<br><br>
+                Amore mio,<br>
                 ho preparato qualcosa per festeggiarti come meriti.
                 Un piccolo segreto ti aspetta.
             </div>
             <div class="arrow">↓</div>
             <div class="scan">Inquadra il QR code</div>
             <div id="qrcode"></div>
-            <div class="footer">Con tutto il cuore ❤️</div>
+            <div class="footer">Con tutto il cuore</div>
             <div class="small">Scansiona per scoprire la sorpresa</div>
         </div>
     </div>
@@ -199,8 +214,8 @@
 
         new QRCode(document.getElementById("qrcode"), {
             text: QR_URL,
-            width: 200,
-            height: 200,
+            width: 160,
+            height: 160,
             colorDark: "#a94438",
             colorLight: "#f6ecdd",
             correctLevel: QRCode.CorrectLevel.H
